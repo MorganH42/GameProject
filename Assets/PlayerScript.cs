@@ -6,26 +6,37 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     CharacterController cc;
     Vector3 moveDir;
-    float moveSpeed;
+    [SerializeField]
+    float moveSpeed = 10;
     float xAxis;
-    float bobSpeed;
-    float bobMagnitude;
+    [SerializeField]
+    float bobSpeed = 10;
+    [SerializeField]
+    float bobMagnitude = 0.1f;
     float cameraStartPos;
     Camera headCam;
-    float sprintMultiplier;
+    [SerializeField]
+    float sprintMultiplier = 1;
+    Ray interactRay;
+    RaycastHit interactData;
+    [SerializeField]
+    GameObject objectInteracted;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         cc = GetComponent<CharacterController>();
         headCam = Camera.main;
         cameraStartPos = headCam.transform.position.y;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, Input.GetAxis("MouseX"), 0);
-        moveDir = new Vector3(0, 0, Input.GetAxis("Vertical"));
+        transform.Rotate(0, Input.GetAxis("Mouse X"), 0);
+        moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         moveDir = transform.rotation * moveDir;
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -43,6 +54,19 @@ public class PlayerScript : MonoBehaviour
         else
         {
             bobSpeed = 10;
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            interactRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+            if (Physics.Raycast(interactRay, out interactData))
+            {
+                objectInteracted = interactData.transform.gameObject;
+
+            }
+            else
+            {
+                objectInteracted = null;
+            }
         }
         xAxis -= Input.GetAxis("Mouse Y");
         xAxis = Mathf.Clamp(xAxis, -80, 80);
