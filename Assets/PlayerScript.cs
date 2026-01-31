@@ -99,6 +99,7 @@ public class PlayerScript : MonoBehaviour
                 itemHeldRigidbody.useGravity = true;
                 itemHeldRigidbody.isKinematic = false;
                 itemHeld.transform.parent = null;
+                itemHeldRigidbody.linearVelocity = Vector3.zero;
                 itemHeld = null;
                 itemHeldRigidbody = null;
             }
