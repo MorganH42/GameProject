@@ -37,8 +37,6 @@ public class PlayerScript : MonoBehaviour
         cc = GetComponent<CharacterController>();
         headCam = Camera.main;
         cameraStartPos = headCam.transform.position.y;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
         hands = GameObject.Find("hands");
     }
 

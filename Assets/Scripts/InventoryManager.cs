@@ -2,10 +2,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
+using UnityEditor.Build.Content;
 public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
 
+    [SerializeField]
+    GameObject inventoryParent;
+
+    public bool isInventoryOpened;
+
     GameObject draggedObject;
+    GameObject lastItemSlot;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,9 +23,27 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     // Update is called once per frame
     void Update()
     {
+        inventoryParent.SetActive(isInventoryOpened);
+
         if(draggedObject != null)
         {
             draggedObject.transform.position = Input.mousePosition;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (isInventoryOpened)
+            {
+                isInventoryOpened = false; 
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+            else
+            {
+                isInventoryOpened = true;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
         }
     }
 
@@ -33,6 +58,7 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             {
                 draggedObject = slot.heldItem;
                 slot.heldItem = null;
+                lastItemSlot = clickedObject;       
             }
         }
     }
@@ -46,6 +72,12 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
             if(slot != null && slot.heldItem == null)
             {
+                slot.SetHeldItem(draggedObject);
+                draggedObject = null;
+            }
+            else if(slot != null && slot.heldItem != null)
+            {
+                lastItemSlot.GetComponent<InventorySlot>().SetHeldItem(slot.heldItem);
                 slot.SetHeldItem(draggedObject);
                 draggedObject = null;
             }
