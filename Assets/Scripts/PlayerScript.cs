@@ -44,6 +44,7 @@ public class PlayerScript : MonoBehaviour
 
             if(Physics.Raycast(ray, out hitInfo, 3))
             {
+                Debug.Log(hitInfo.transform.gameObject.tag);
                 ItemPickable item = hitInfo.collider.gameObject.GetComponent<ItemPickable>();
 
                 if(item != null)
@@ -53,31 +54,34 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        transform.Rotate(0, Input.GetAxis("Mouse X") * horizontalSensitivity, 0);
-        moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        moveDir = transform.rotation * moveDir;
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (inventoryManager.isInventoryOpened == false)
         {
-            sprintMultiplier = 2;
-        }
-        else
-        {
-            sprintMultiplier = 1;
-        }
-        cc.SimpleMove(moveDir * moveSpeed * sprintMultiplier);
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            bobSpeed = 20;
-        }
-        else
-        {
-            bobSpeed = 10;
-        }
+            transform.Rotate(0, Input.GetAxis("Mouse X") * horizontalSensitivity, 0);
+            moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            moveDir = transform.rotation * moveDir;
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                sprintMultiplier = 2;
+            }
+            else
+            {
+                sprintMultiplier = 1;
+            }
+            cc.SimpleMove(moveDir * moveSpeed * sprintMultiplier);
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                bobSpeed = 20;
+            }
+            else
+            {
+                bobSpeed = 10;
+            }
 
-        xAxis -= Input.GetAxis("Mouse Y") * verticalSensitivity;
-        xAxis = Mathf.Clamp(xAxis, -80, 80);
-        headCam.transform.localRotation = Quaternion.Euler(xAxis, 0, 0);
-        headCam.transform.localPosition = new Vector3(headCam.transform.localPosition.x, cameraStartPos + (Wave(bobMagnitude, bobSpeed) * Mathf.Abs(Input.GetAxis("Vertical"))), headCam.transform.localPosition.z);
+            xAxis -= Input.GetAxis("Mouse Y") * verticalSensitivity;
+            xAxis = Mathf.Clamp(xAxis, -80, 80);
+            headCam.transform.localRotation = Quaternion.Euler(xAxis, 0, 0);
+            headCam.transform.localPosition = new Vector3(headCam.transform.localPosition.x, cameraStartPos + (Wave(bobMagnitude, bobSpeed) * Mathf.Abs(Input.GetAxis("Vertical"))), headCam.transform.localPosition.z);
+        }
     }
     float Wave(float mag, float freq)
     {
