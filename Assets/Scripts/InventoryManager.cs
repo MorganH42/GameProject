@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
 using UnityEditor.Build.Content;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
 
@@ -13,6 +14,10 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     GameObject draggedObject;
     GameObject lastItemSlot;
+
+    [SerializeField]
+    GameObject[] slots = new GameObject[20];
+    [SerializeField] GameObject itemPrefab;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -81,6 +86,33 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
                 slot.SetHeldItem(draggedObject);
                 draggedObject = null;
             }
+        }
+    }
+
+    public void ItemPicked(GameObject pickedItem)
+    {
+        GameObject emptySlot = null;
+
+        for (int i = 0; i < slots.Length; i++)
+        {
+            InventorySlot slot = slots[i].GetComponent<InventorySlot>();
+
+            if (slot.heldItem == null)
+            {
+                emptySlot = slots[i];
+                break;
+            }
+        }
+
+        if (emptySlot != null)
+        {
+            GameObject newItem = Instantiate(itemPrefab);
+            newItem.GetComponent<InventoryItem>().itemScriptableObject = pickedItem.GetComponent<ItemPickable>().itemScriptableObject;
+            newItem.transform.SetParent(emptySlot.transform.parent.parent.GetChild(2));
+
+            emptySlot.GetComponent<InventorySlot>().SetHeldItem(newItem);
+
+            Destroy(pickedItem);
         }
     }
 }

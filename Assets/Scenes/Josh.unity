@@ -377,7 +377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5543833142333210301, guid: b1b961176460f7e4dbf3e5758f26757b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -345
+      value: -300
       objectReference: {fileID: 0}
     - target: {fileID: 5543833142333210301, guid: b1b961176460f7e4dbf3e5758f26757b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -645,6 +645,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryParent: {fileID: 609875651}
   isInventoryOpened: 0
+  slots:
+  - {fileID: 1702825842}
+  - {fileID: 830997143}
+  - {fileID: 1198981304}
+  - {fileID: 1576140672}
+  - {fileID: 1994676460}
+  - {fileID: 1855128402}
+  - {fileID: 1725929582}
+  - {fileID: 910409655}
+  - {fileID: 811925829}
+  - {fileID: 1197077428}
+  - {fileID: 1755782508}
+  - {fileID: 1072113894}
+  - {fileID: 1074194859}
+  - {fileID: 969069166}
+  - {fileID: 1048390979}
+  - {fileID: 1864501146}
+  - {fileID: 960080000}
+  - {fileID: 1637484219}
+  - {fileID: 1599291284}
+  - {fileID: 1031244716}
+  itemPrefab: {fileID: 0}
 --- !u!1 &811925829
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,7 +844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0df7b76f7adffc8419db24e88312e63f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heldItem: {fileID: 557086751}
+  heldItem: {fileID: 1462472710}
 --- !u!1001 &889084244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -897,7 +919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5543833142333210301, guid: b1b961176460f7e4dbf3e5758f26757b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -300
+      value: -255
       objectReference: {fileID: 0}
     - target: {fileID: 5543833142333210301, guid: b1b961176460f7e4dbf3e5758f26757b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2006,7 +2028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0df7b76f7adffc8419db24e88312e63f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heldItem: {fileID: 0}
+  heldItem: {fileID: 557086751}
 --- !u!1 &1219319086
 GameObject:
   m_ObjectHideFlags: 0
@@ -2444,7 +2466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0df7b76f7adffc8419db24e88312e63f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heldItem: {fileID: 1462472710}
+  heldItem: {fileID: 0}
 --- !u!1 &1725929582
 GameObject:
   m_ObjectHideFlags: 0
@@ -3216,11 +3238,9 @@ MonoBehaviour:
   bobSpeed: 10
   bobMagnitude: 0.1
   sprintMultiplier: 1
-  objectInteracted: {fileID: 0}
   verticalSensitivity: 2
   horizontalSensitivity: 2
-  itemHeld: {fileID: 0}
-  hands: {fileID: 0}
+  inventoryManager: {fileID: 727645667}
 --- !u!136 &1919846399
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3559,9 +3579,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3845513481420836998, guid: 46fa62f4ee3e843408338d9d78e18c18, type: 3}
+      propertyPath: itemScriptableObject
+      value: 
+      objectReference: {fileID: 11400000, guid: f1ddba20d4e1228499a8c61e38c3693e, type: 2}
     - target: {fileID: 7646782066907221900, guid: 46fa62f4ee3e843408338d9d78e18c18, type: 3}
       propertyPath: m_Name
       value: Ball
+      objectReference: {fileID: 0}
+    - target: {fileID: 8848420757033164197, guid: 46fa62f4ee3e843408338d9d78e18c18, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8848420757033164197, guid: 46fa62f4ee3e843408338d9d78e18c18, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3574,8 +3606,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 1113525024}
   - {fileID: 36847584}
+  - {fileID: 1900997350948864885}
   - {fileID: 1919846402}
   - {fileID: 727645666}
   - {fileID: 600486763}
-  - {fileID: 1900997350948864885}
   - {fileID: 1876294524}
