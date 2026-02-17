@@ -13,6 +13,7 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     public bool isInventoryOpened;
 
     GameObject draggedObject;
+    [SerializeField]
     GameObject lastItemSlot;
 
     [SerializeField]
@@ -75,15 +76,25 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             GameObject clickedObject = eventData.pointerCurrentRaycast.gameObject;
             InventorySlot slot = clickedObject.GetComponent<InventorySlot>();
 
+            //no item in slot - place item
             if(slot != null && slot.heldItem == null)
             {
                 slot.SetHeldItem(draggedObject);
                 draggedObject = null;
             }
+            
+            //is item already in slot - swap items
             else if(slot != null && slot.heldItem != null)
             {
                 lastItemSlot.GetComponent<InventorySlot>().SetHeldItem(slot.heldItem);
                 slot.SetHeldItem(draggedObject);
+                draggedObject = null;
+            }
+
+            //return item to last slot
+            else if(clickedObject.name == "DropItem")
+            {
+                lastItemSlot.GetComponent<InventorySlot>().SetHeldItem(draggedObject);
                 draggedObject = null;
             }
         }
