@@ -106,6 +106,17 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             if(slot == hotbarSlots[selectedHotbarSlot])
             {
                 scale = new Vector3(1.1f, 1.1f, 1.1f);
+
+                if(slot.GetComponent<InventorySlot>().heldItem != null)
+                {
+                    for(int i = 0; i< handParent.childCount; i++)
+                    {
+                        if(handParent.GetChild(i).GetComponent<ItemHand>().itemScriptableObject == hotbarSlots[selectedHotbarSlot].GetComponent<InventorySlot>().heldItem.GetComponent<InventoryItem>().itemScriptableObject)
+                        {
+                            handParent.GetChild(i).gameObject.SetActive(true);
+                        }
+                    }
+                }
             }
             else
             {
@@ -202,7 +213,7 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             newItem.transform.SetParent(emptySlot.transform.parent.parent.GetChild(2));
 
             emptySlot.GetComponent<InventorySlot>().SetHeldItem(newItem);
-            newItem.transform.localScale = new Vector3(1, 1, 1);
+            newItem.transform.localScale = new Vector3(1, 1, 1); 
 
             Destroy(pickedItem);
         }

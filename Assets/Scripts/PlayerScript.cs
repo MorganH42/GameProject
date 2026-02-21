@@ -44,7 +44,6 @@ public class PlayerScript : MonoBehaviour
 
             if(Physics.Raycast(ray, out hitInfo, 3))
             {
-                Debug.Log(hitInfo.transform.gameObject.tag);
                 ItemPickable item = hitInfo.collider.gameObject.GetComponent<ItemPickable>();
 
                 if(item != null)
