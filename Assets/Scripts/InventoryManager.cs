@@ -161,7 +161,7 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             else if(slot != null && slot.heldItem != null)
             {
                 lastItemSlot.GetComponent<InventorySlot>().SetHeldItem(slot.heldItem);
-                slot.heldItem.transform.SetParent(slot.transform.parent.parent.GetChild(2));
+                slot.heldItem.transform.SetParent(lastItemSlot.transform.parent.parent.GetChild(2));
 
                 slot.SetHeldItem(draggedObject);
                 draggedObject.transform.SetParent(slot.transform.parent.parent.GetChild(2));
@@ -187,6 +187,7 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
                 Destroy(draggedObject);
             }
 
+            HotbarItemChanged();
             draggedObject = null;
         }
     }
