@@ -24,6 +24,8 @@ public class PlayerScript : MonoBehaviour
     float horizontalSensitivity = 1;
     [SerializeField]
     InventoryManager inventoryManager;
+    [SerializeField]
+    NPCManager NPCManager;
   
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -49,6 +51,17 @@ public class PlayerScript : MonoBehaviour
                 if(item != null)
                 {
                     inventoryManager.ItemPicked(hitInfo.collider.gameObject);
+                }
+
+                else
+                {
+                    NPCInfo npc = hitInfo.collider.gameObject.GetComponent<NPCInfo>();
+
+                    if(npc != null)
+                    {
+                        Debug.Log(npc.NPCName);
+                        NPCManager.StartConversation(npc);
+                    }
                 }
             }
         }
