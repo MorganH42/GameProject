@@ -17,7 +17,10 @@ public class NPCInfo : MonoBehaviour
 
     private void Update()
     {
-        Input.GetKeyDown(KeyCode.P);
-        currentObject = currentObject + 1;
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            currentObject += 1;
+        }
+        
     }
 }

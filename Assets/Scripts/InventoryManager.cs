@@ -32,6 +32,7 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     [SerializeField]
     GameObject[] hotbarSlots = new GameObject[4];
 
+    float dropDistance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -178,7 +179,12 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             else
             {
                 Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                Vector3 position = ray.GetPoint(3);
+                RaycastHit dropRay;
+                if(Physics.Raycast(ray, out dropRay))
+                {
+                   dropDistance = dropRay.distance;
+                }
+                Vector3 position = ray.GetPoint(dropDistance - 0.5f);
 
                 GameObject newItem = Instantiate(draggedObject.GetComponent<InventoryItem>().itemScriptableObject.prefab, position, new Quaternion());
                 newItem.GetComponent<ItemPickable>().itemScriptableObject = draggedObject.GetComponent<InventoryItem>().itemScriptableObject;
