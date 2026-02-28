@@ -14,6 +14,7 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     public bool isInventoryOpened;
     int selectedHotbarSlot = 0;
 
+    [SerializeField]
     GameObject draggedObject;
     [SerializeField]
     GameObject lastItemSlot;
@@ -51,14 +52,14 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             draggedObject.transform.position = Input.mousePosition;
         }
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) && draggedObject == null)
         {
             if (isInventoryOpened)
             {
                 isInventoryOpened = false; 
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
-            }
+            }   
             else
             {
                 isInventoryOpened = true;
