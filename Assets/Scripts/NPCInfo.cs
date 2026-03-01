@@ -14,6 +14,8 @@ public class NPCInfo : MonoBehaviour
     [SerializeField]
     public GameObject[] objects = new GameObject[5];
     public int currentObject = 0;
+    [SerializeField]
+    public int NPCType;
 
     private void Update()
     {

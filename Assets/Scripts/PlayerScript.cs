@@ -59,8 +59,15 @@ public class PlayerScript : MonoBehaviour
 
                     if(npc != null)
                     {
-                        Debug.Log(npc.NPCName);
-                        NPCManager.StartConversation(npc);
+                        if (npc.NPCType == 0)
+                        {
+                            Debug.Log(npc.NPCName);
+                            NPCManager.StartConversation(npc);
+                        }
+                        else if (npc.NPCType == 1)
+                        {
+                            inventoryManager.SellItem();
+                        }
                     }
                 }
             }

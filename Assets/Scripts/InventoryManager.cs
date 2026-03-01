@@ -226,4 +226,9 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             Destroy(pickedItem);
         }
     }
+    
+    public void SellItem()
+    {
+        //need to figure out how to destroy item from hand and inventory
+    }
 }
