@@ -185,7 +185,7 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
                 {
                    dropDistance = dropRay.distance;
                 }
-                Vector3 position = ray.GetPoint(dropDistance - 0.5f);
+                Vector3 position = ray.GetPoint(dropDistance - 0.01f);
 
                 GameObject newItem = Instantiate(draggedObject.GetComponent<InventoryItem>().itemScriptableObject.prefab, position, new Quaternion());
                 newItem.GetComponent<ItemPickable>().itemScriptableObject = draggedObject.GetComponent<InventoryItem>().itemScriptableObject;
@@ -227,8 +227,4 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         }
     }
     
-    public void SellItem()
-    {
-        //need to figure out how to destroy item from hand and inventory
-    }
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1793063330139621105}
   - component: {fileID: 1956958309993596615}
   - component: {fileID: 7092361025719895476}
+  - component: {fileID: 1209610311773691315}
   m_Layer: 0
   m_Name: Mug
   m_TagString: Untagged
@@ -149,4 +150,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a40a2bb080d73fe42a176d12abf589f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemScriptableObject: {fileID: 11400000, guid: 8bf9eee34a8a20440a17576d232029ba, type: 2}
+--- !u!114 &1209610311773691315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485452192176240544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77dd6d3e92e870748937dd3c1f17404a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyManager: {fileID: 0}
   itemScriptableObject: {fileID: 11400000, guid: 8bf9eee34a8a20440a17576d232029ba, type: 2}
