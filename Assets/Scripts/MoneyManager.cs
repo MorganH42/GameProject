@@ -4,7 +4,7 @@ public class MoneyManager : MonoBehaviour
 {
 
     public TextMeshProUGUI moneyText;
-    int money = 0;
+    public int money = 0;
     InventoryManager inventoryManager;
     NPCManager NPCManager;
 
