@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
 
     MoneyManager moneyManager;
+    [SerializeField]
+    TextMeshProUGUI deathText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,7 +29,13 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Death");
+            Die("You didn't have enough money for food. You were found the next morning in your box.");
         }
+    }
+
+    void Die(string deathMessage)
+    {
+        SceneManager.LoadScene("Death");
+
     }
 }
